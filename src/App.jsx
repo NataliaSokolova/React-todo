@@ -8,10 +8,13 @@ import AddTodoForm from './AddTodoForm';
 function App() {
 const [newTodo, setNewTodo] = React.useState('relax');
 
+const [todoList, setTodoList] = React.useState([]);
+
+
   return (
     <div>
        <h1>My Todo App</h1>
-       <TodoList />
+       <TodoList todoList = {todoList}/>
        <AddTodoForm onAddTodo={setNewTodo} />
        <p>{newTodo}</p>
       

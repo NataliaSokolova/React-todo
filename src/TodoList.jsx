@@ -9,11 +9,11 @@ const todoList = [
   ];
    
   
-function TodoList () {
+function TodoList (props) {
   return (
     <ul>
-    {todoList.map((todo) => (
-    <TodoListItem key = {todo.id} todo = {todo}/>
+    {props.todoList.map((todo,index) => (
+    <TodoListItem key = {index} todo = {todo}/>
 
            ))}
 
