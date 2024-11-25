@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TodoList from './TodoList';
-import AddTodoForm from './AddTodoForm'
+import AddTodoForm from './AddTodoForm';
+
+
  
 
 function App() {
+const [newTodo, setNewTodo] = React.useState('relax');
+
   return (
     <div>
        <h1>My Todo App</h1>
        <TodoList />
-       <AddTodoForm />
+       <AddTodoForm onAddTodo={setNewTodo} />
+       <p>{newTodo}</p>
+      
     </div>   
   );
 }
+
     
 
-export default App;
+
+  export default App;
