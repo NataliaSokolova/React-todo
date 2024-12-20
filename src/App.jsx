@@ -25,7 +25,6 @@ function App() {
   }
 
   function removeTodo(id){
-    console.log('inside removeTodo')
    const updatedTodoList =  todoList.filter((todo)=>  todo.id  !== id);
    setTodoList(updatedTodoList);
   }
@@ -34,7 +33,7 @@ function App() {
     <>
       <h1>My Todo App</h1>
       
-      <AddTodoForm addTodo={addTodo} />
+      <AddTodoForm addTodo={addTodo} todoList={todoList}/>
       <TodoList todoList={todoList}  onRemoveTodo = {removeTodo} />
     </>
   );

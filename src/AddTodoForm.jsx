@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import InputWithLabel from "./InputWithLabel"
 
-export default function AddTodoForm({addTodo}) {
+export default function AddTodoForm({addTodo, todoList}) {
 
   const [todoTitle, setTodoTitle] = useState("");
-
+  const inputRef = useRef(null);
   function handleTitleChange(event) {
     const newTodoTitle = event.target.value;
-    console.log('newTodoTitle: ', newTodoTitle);
+ 
     setTodoTitle(newTodoTitle);
   }
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [todoTitle, todoList]);
 
   function handleAddTodo(event) {
     event.preventDefault();
@@ -28,6 +32,8 @@ export default function AddTodoForm({addTodo}) {
         placeholder="Enter todo title"
         name="title"
         onChange={handleTitleChange}
+        inputRef={inputRef}
+        
       />
       <button type="submit">Add</button>
     </form>
