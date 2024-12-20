@@ -1,39 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import InputWithLabel from "./InputWithLabel"
 
-export default function AddTodoForm({addTodo}) {
+export default function AddTodoForm({addTodo, todoList}) {
 
   const [todoTitle, setTodoTitle] = useState("");
-
+  const inputRef = useRef(null);
   function handleTitleChange(event) {
     const newTodoTitle = event.target.value;
-    console.log('newTodoTitle: ', newTodoTitle);
+ 
     setTodoTitle(newTodoTitle);
   }
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [todoTitle, todoList]);
+
   function handleAddTodo(event) {
     event.preventDefault();
-  
-    const todoTitle = event.target.title.value;
-    addTodo({ title: todoTitle, id: Date.now() });
+      addTodo({ title: todoTitle, id: Date.now() });
     console.log('todoTitle: ',todoTitle);
-    setTodoTitle("");
-   //  const trimmedTitle = todoTitle.trim(); 
-   //  if (!trimmedTitle) {
-   //    alert("Todo title cannot be empty!");
-   //    return;
-   //  }
+    setTodoTitle("")
   
   }
   return (
     <form onSubmit={handleAddTodo}>
-      <label htmlFor="todoTitle"></label>
-      <input
-        type="text"
+      
+      <InputWithLabel
         id="todoTitle"
-        name="title"
-        placeholder="Enter todo title"
+        type="text"
         value={todoTitle}
+        placeholder="Enter todo title"
+        name="title"
         onChange={handleTitleChange}
+        inputRef={inputRef}
+        
       />
       <button type="submit">Add</button>
     </form>
