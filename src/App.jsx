@@ -15,7 +15,7 @@ function App() {
       if (success) {
         resolve({
           data: {
-            todoList: JSON.parse(localStorage.getItem("list")) || [],
+            todoList: JSON.parse(localStorage.getItem("todoList")) || [],
           }
         });
       } else {
