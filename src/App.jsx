@@ -82,46 +82,46 @@ function App() {
 
   // };
 
-  const postTodo = async (newTitle) => {
-    const options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fields: {
-          title: newTitle,
-        },
-      }),
-    };
+  // const postTodo = async (newTitle) => {
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       fields: {
+  //         title: newTitle,
+  //       },
+  //     }),
+  //   };
   
-    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+  //   const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
   
-    console.log("URL:", url);
-    console.log("Options:", options);
+  //   console.log("URL:", url);
+  //   console.log("Options:", options);
   
-    try {
-      const response = await fetch(url, options);
+  //   try {
+  //     const response = await fetch(url, options);
   
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Error: ${response.status} - ${errorText}`);
-      }
+  //     if (!response.ok) {
+  //       const errorText = await response.text();
+  //       throw new Error(`Error: ${response.status} - ${errorText}`);
+  //     }
   
-      const newTodo = await response.json();
+  //     const newTodo = await response.json();
   
-      setTodoList((prevList) => [
-        ...prevList,
-        {
-          id: newTodo.id,
-          title: newTodo.fields.title,
-        },
-      ]);
-    } catch (error) {
-      console.log("Post error:", error.message);
-    }
-  };
+  //     setTodoList((prevList) => [
+  //       ...prevList,
+  //       {
+  //         id: newTodo.id,
+  //         title: newTodo.fields.title,
+  //       },
+  //     ]);
+  //   } catch (error) {
+  //     console.log("Post error:", error.message);
+  //   }
+  // };
   
   
 
