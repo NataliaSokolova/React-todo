@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment, useState } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
@@ -18,7 +19,6 @@ function App() {
       import.meta.env.VITE_AIRTABLE_BASE_ID
     }/${import.meta.env.VITE_TABLE_NAME}`;
 
-
     try {
       const response = await fetch(url, options);
 
@@ -29,102 +29,17 @@ function App() {
       const data = await response.json();
 
       const todos = data.records.map((todo) => ({
-          id: todo.id,
-          title: todo.fields.title
-        }));
-        console.log("Todos Array:", todos);    
+        id: todo.id,
+        title: todo.fields.title,
+      }));
+      console.log("Todos Array:", todos);
 
-       setTodoList(todos);
-       setIsLoading(false)
-
+      setTodoList(todos);
+      setIsLoading(false);
     } catch (error) {
       console.log("Fetch error:", error.message);
     }
   };
-
-  // const postTodo = async(newTitle) =>{
-  //   const options = {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       fields: {
-  //         Title: newTitle,
-  //       },
-  //     }),
-  //   };
-
-  //   const url = `https://api.airtable.com/v0/${
-  //     import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
-
-  //  try {
-
-  //   const response = await fetch(url, options);
-    
-  //   if(!response.ok) {
-  //     throw new Error(`Error: ${response.status}`)
-  //   }
-
-  //   const newTodo = await response.json();
-  //   setTodoList((prevList) => [
-  //     ...prevList,
-  //     {
-  //       id: newTodo.id,
-  //       title: newTodo.fields.Title,
-  //     },
-  //   ]);
-
-  //  } catch (error) {
-  //    console.log("Post error:", error.message)
-  //  }
-
-  // };
-
-  // const postTodo = async (newTitle) => {
-  //   const options = {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       fields: {
-  //         title: newTitle,
-  //       },
-  //     }),
-  //   };
-  
-  //   const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
-  
-  //   console.log("URL:", url);
-  //   console.log("Options:", options);
-  
-  //   try {
-  //     const response = await fetch(url, options);
-  
-  //     if (!response.ok) {
-  //       const errorText = await response.text();
-  //       throw new Error(`Error: ${response.status} - ${errorText}`);
-  //     }
-  
-  //     const newTodo = await response.json();
-  
-  //     setTodoList((prevList) => [
-  //       ...prevList,
-  //       {
-  //         id: newTodo.id,
-  //         title: newTodo.fields.title,
-  //       },
-  //     ]);
-  //   } catch (error) {
-  //     console.log("Post error:", error.message);
-  //   }
-  // };
-  
-  
-
 
   useEffect(() => {
     fetchData();
@@ -165,28 +80,43 @@ function App() {
     setTodoList([newTodo, ...todoList]);
   }
 
-  // function addTodo(newTodo) {
-  //   postTodo(newTodo.title)
-  // }
-
   function removeTodo(id) {
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodoList);
   }
 
   return (
-    <>
-      <h1>My Todo App</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>My Todo App</h1>
 
-      <AddTodoForm addTodo={addTodo} todoList={todoList} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : todoList.length === 0 ? (
-        <p>Your list is empty</p> 
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+              <AddTodoForm addTodo={addTodo} todoList={todoList} />
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : todoList.length === 0 ? (
+                <p>Your list is empty</p>
+              ) : (
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+              )}
+            </>
+          }
+        />
+        <Route
+          path = "/new"
+          element = {
+            <>
+            <h1>New Todo List</h1>
+            
+            </>
+          }
+
+      />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
