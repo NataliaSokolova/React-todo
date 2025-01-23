@@ -41,9 +41,25 @@ function App() {
     }
   };
 
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    fetchData();
-  }, []);
+  const fetchDataWithLocalStorage = async () => {
+    try {
+      await fetchData();
+    } catch (error) {
+      console.log("Fetching from Airtable failed. Falling back to localStorage.");
+      const localTodos = JSON.parse(localStorage.getItem("todoList")) || [];
+      setTodoList(localTodos);
+      setIsLoading(false);
+    }
+  };
+
+  fetchDataWithLocalStorage();
+}, []);
+
 
   useEffect(() => {
     const myPromise = new Promise((resolve, reject) => {
@@ -86,7 +102,13 @@ function App() {
   }
 
   return (
+    
     <BrowserRouter>
+
+<div className="nav">
+    <a href="/">Home</a>
+    <a href="/new">New</a>
+  </div>
       <Routes>
         <Route
           path="/"

@@ -1,0 +1,11 @@
+.ListItem {
+    color:navy; /* Tomato color */
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .ListItem:hover {
+    color: #32cd32; /* LimeGreen color */
+  }
