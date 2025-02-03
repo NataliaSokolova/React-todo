@@ -5,7 +5,10 @@ function TodoList({todoList, onRemoveTodo}) {
   return (
     <ul>
       {todoList.map((todo, index) => (
-        <TodoListItem key={index} todo={todo} onRemoveTodo = {onRemoveTodo} />
+        <TodoListItem key={index} todo={todo} 
+        onRemoveTodo = {onRemoveTodo} 
+       
+        />
       ))}
     </ul>
   );
