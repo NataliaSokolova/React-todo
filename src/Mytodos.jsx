@@ -139,18 +139,40 @@ function MyToDos() {
     }
   }
 
+  // return (
+  //   <>
+  //     <AddTodoForm  className = {styles.AddTodoForm} addTodo={addTodo} todoList={todoList} />
+  //     {isLoading ? (
+  //       <p>Loading...</p>
+  //     ) : todoList.length === 0 ? (
+  //       <p>Your list is empty</p>
+  //     ) : (
+  //       <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+  //     )}
+  //   </>
+  // );
+
+
   return (
-    <>
-      <AddTodoForm  className = {styles.AddTodoForm} addTodo={addTodo} todoList={todoList} />
+    <div className={styles.todoContainer}>
+      <AddTodoForm 
+        className={styles.addTodoForm} 
+        addTodo={addTodo} 
+        todoList={todoList} 
+      />
       {isLoading ? (
-        <p>Loading...</p>
+        <p className={styles.loadingText}>Loading...</p>
       ) : todoList.length === 0 ? (
-        <p>Your list is empty</p>
+        <p className={styles.emptyListText}>Your list is empty</p>
       ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+        <TodoList classname = {styles.atodoList}
+          todoList={todoList} 
+          onRemoveTodo={removeTodo} 
+        />
       )}
-    </>
+    </div>
   );
+
 }
 
 export default MyToDos;
