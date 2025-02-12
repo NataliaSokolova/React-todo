@@ -17,6 +17,10 @@ export default function AddTodoForm({ addTodo, todoList }) {
     inputRef.current.focus();
   }, [todoTitle, todoList]);
 
+
+
+
+
   async function handleAddTodo(event) {
     event.preventDefault();
 
@@ -57,7 +61,14 @@ export default function AddTodoForm({ addTodo, todoList }) {
     } catch (error) {
       console.error("Error adding todo to Airtable:", error.message);
     }
+
+    
   }
+
+
+
+
+
 
   return (
     <form onSubmit={handleAddTodo}>
