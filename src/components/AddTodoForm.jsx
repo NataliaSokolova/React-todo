@@ -1,7 +1,8 @@
-// 
-
 import React, { useState, useRef, useEffect } from "react";
 import InputWithLabel from "./InputWithLabel";
+import PropTypes from 'prop-types';
+
+
 
 export default function AddTodoForm({ addTodo, todoList }) {
   const [todoTitle, setTodoTitle] = useState("");
@@ -73,3 +74,13 @@ export default function AddTodoForm({ addTodo, todoList }) {
     </form>
   );
 }
+
+AddTodoForm.propTypes = {
+  todoTitle: PropTypes.string.isRequired, 
+  handleTitleChange: PropTypes.func.isRequired, 
+  handleAddTodo: PropTypes.func.isRequired, 
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]), 
+};

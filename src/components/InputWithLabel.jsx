@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment, useRef } from "react";
+import PropTypes from 'prop-types';
 import styles from './InputWithLabel.module.css'
 
 const InputWithLabel = ({ 
@@ -32,5 +33,19 @@ const InputWithLabel = ({
     </>
   )
 }
+
+InputWithLabel.propTypes = {
+  id: PropTypes.string.isRequired, 
+  children: PropTypes.node.isRequired,
+  type: PropTypes.string, 
+  name: PropTypes.string, 
+  value: PropTypes.string.isRequired, 
+  onChange: PropTypes.func.isRequired, 
+  placeholder: PropTypes.string, 
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]), 
+};
 
 export default InputWithLabel
