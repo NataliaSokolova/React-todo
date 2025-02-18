@@ -29,7 +29,6 @@ function MyToDos() {
         !import.meta.env.VITE_AIRTABLE_BASE_ID ||
         !import.meta.env.VITE_TABLE_NAME
       ) {
-        console.error("Environment variables are not set properly.");
         return;
       }
       const response = await fetch(url, options);
@@ -39,23 +38,16 @@ function MyToDos() {
       }
       const data = await response.json();
 
-      console.log("Sorted Airtable response:", data.records);
-
       const todos = data.records.map((record) => ({
         id: record.id,
         title: record.fields.title,
         createdTime: record.fields.createdTime,
       }));
-      console.log("Todos Array:", todos);
 
       setTodoList(sortTodos(todos, sortField, isAscending)); // Sort on load
       setIsLoading(false);
     } catch (error) {
-      console.error("Fetch error:", error.message); // Log the full error
-      console.log("Falling back to localStorage.");
-
       setIsLoading(false);
-      console.log("Fetch error:", error.message);
     }
   };
 
@@ -128,9 +120,7 @@ function MyToDos() {
     });
 
     myPromise.then((result) => {
-      console.log("Promise resolved with data:", result.data.todoList);
       setTodoList(result.data.todoList);
-      console.log("Todo list updated:", result.data.todoList);
       setIsLoading(false);
     });
   }, []);
@@ -138,7 +128,6 @@ function MyToDos() {
   useEffect(() => {
     if (!isLoading) {
       localStorage.setItem("todoList", JSON.stringify(todoList));
-      console.log("Todo list saved to localStorage:", todoList);
     }
   }, [todoList, isLoading]);
 
@@ -176,7 +165,7 @@ function MyToDos() {
       />
 
       <div>
-        <button onClick={toggleSortOrder}>
+        <button className={styles.button} onClick={toggleSortOrder}>
           {isAscending ? "Sort Descending" : "Sort Ascending"}
         </button>
       </div>

@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import InputWithLabel from "./InputWithLabel";
-import PropTypes from 'prop-types';
-
-
+import PropTypes from "prop-types";
 
 export default function AddTodoForm({ addTodo, todoList }) {
   const [todoTitle, setTodoTitle] = useState("");
@@ -17,15 +15,13 @@ export default function AddTodoForm({ addTodo, todoList }) {
     inputRef.current.focus();
   }, [todoTitle, todoList]);
 
-
-
-
-
   async function handleAddTodo(event) {
     event.preventDefault();
 
     // Airtable API details
-    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
     const options = {
       method: "POST",
       headers: {
@@ -61,14 +57,7 @@ export default function AddTodoForm({ addTodo, todoList }) {
     } catch (error) {
       console.error("Error adding todo to Airtable:", error.message);
     }
-
-    
   }
-
-
-
-
-
 
   return (
     <form onSubmit={handleAddTodo}>
@@ -76,7 +65,7 @@ export default function AddTodoForm({ addTodo, todoList }) {
         id="todoTitle"
         type="text"
         value={todoTitle}
-         placeholder="Enter todo title"
+        placeholder="Enter todo title"
         name="title"
         onChange={handleTitleChange}
         inputRef={inputRef}
@@ -87,11 +76,6 @@ export default function AddTodoForm({ addTodo, todoList }) {
 }
 
 AddTodoForm.propTypes = {
-  todoTitle: PropTypes.string.isRequired, 
-  handleTitleChange: PropTypes.func.isRequired, 
-  handleAddTodo: PropTypes.func.isRequired, 
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]), 
+  addTodo: PropTypes.func.isRequired,
+  todoList: PropTypes.array.isRequired,
 };
