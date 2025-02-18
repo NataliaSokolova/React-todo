@@ -41,6 +41,9 @@
   width: 100%;
   max-width: 600px;
 }
+.button{
+  margin-bottom: 10px;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

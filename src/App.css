@@ -32,6 +32,32 @@
   .btn:hover {
     background: var(--hover-color);
   }
+  .nav {
+    background-color: var(--primary-color);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .navLink {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .navLink:hover {
+    background-color: var(--hover-color);
+  }
+  
+  /* Active link styling */
+  .active-link {
+    background-color: var(--hover-color);
+    font-weight: bold;
+  }
   
    /* Responsive Navbar (Mobile) */
   @media (max-width: 768px) {
