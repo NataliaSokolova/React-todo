@@ -1,0 +1,68 @@
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #ffffff;
+  --text-color: #fff;
+  --hover-color: #357abd;
+  --border-radius: 8px;
+}
+
+
+.ListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  color: #565353ed;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+  border-color: black 1px;
+  width: 500px;
+  border: 0.5px solid #a09b9bed;
+  border-radius: 0.5em;
+  background-color: white;
+}
+
+
+.ListItem input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #4a90e2;
+  border-radius: 4px;
+  margin-right: 10px;
+
+
+}
+
+.button {
+  text-align: right;
+  background-color: #4a90e2;
+}
+
+.ListItem button {
+  margin-left: auto; 
+}
+
+ /* Responsive Navbar (Mobile) */
+
+@media (max-width: 768px) {
+  .ListItem {
+    display: flex;
+    flex-direction: column; 
+    width: 290px;
+    font-size: 16px;
+    padding: 12px;
+    margin: 20px;
+  }
+
+  .ListItem button {
+    text-align: center;
+    width: 100%;
+  }
+  .button {
+    align-items: center;
+    text-align: center;
+  }
+}

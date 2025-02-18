@@ -1,6 +1,16 @@
 import React, { useEffect, Fragment, useRef } from "react";
+import styles from './InputWithLabel.module.css'
 
-const InputWithLabel = ({ id, value,name, onChange, children = "Title: ", placeholder, type = "text", inputRef}) => {
+const InputWithLabel = ({ 
+  id, 
+  value,
+  name, 
+  onChange,
+  children = "Title: ", 
+  placeholder, 
+  type = "text", 
+  inputRef
+}) => {
 
 
   return (
@@ -8,6 +18,7 @@ const InputWithLabel = ({ id, value,name, onChange, children = "Title: ", placeh
     <>
 <label htmlFor={id}>{children}</label>
 <input
+        className={styles.input}
         type={type}
         id={id}
         name={name}

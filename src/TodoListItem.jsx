@@ -1,9 +1,13 @@
 import React from 'react'
+import styles from './TodoListItem.module.css'
 
 function TodoListItem ({todo, onRemoveTodo}) {
   return (
-       <li>
+       <li className =  {styles.ListItem}>
+                <input  type="checkbox" defaultChecked={false} />
         {todo.title} 
+ 
+
         <button type="button" onClick = {() => onRemoveTodo(todo.id)} >Remove</button>
        </li>
  
