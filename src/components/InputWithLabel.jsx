@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect,useRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./InputWithLabel.module.css";
 
@@ -12,6 +12,12 @@ const InputWithLabel = ({
   type = "text",
   inputRef,
 }) => {
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.focus();
+  }, []);
+
+
   return (
     <>
       <label htmlFor={id}>{label}</label>
